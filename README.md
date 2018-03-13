@@ -25,3 +25,7 @@ If ever you have any other idea to help us on this project, feel free to reach o
 ## Deadline 
 
 The deadline for submitting the proposal being Sunday April 1, 2018, we plan on sending everything around the 29th. 
+
+## Random discussion / Comments 
+
+Feel free to leave comments or question on [this issue](https://github.com/ThinkR-open/isc-proposal/issues/3)
