@@ -4,7 +4,7 @@
 
 ## See the proposal 
 
-Read the proposal at [proposal_neo4J.md](https://github.com/ThinkR-open/isc-proposal/blob/master/README.md). 
+Read the proposal at [proposal_neo4J.md](https://github.com/ThinkR-open/isc-proposal/blob/master/proposal_neo4j.md). 
 
 ## How can I help?
 
