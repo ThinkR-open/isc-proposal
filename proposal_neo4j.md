@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Rebooting and Extending R for Neo4J
 ================
 Colin FAY
@@ -12,13 +17,22 @@ database, adopted by companies like Airbnb, Microsoft, IBM, Orange, and
 many others. Coincidently enough, these companies also use R in their
 data science teams.
 
-// TODO : add academic use cases
+According to DB-Engines.com, Neo4J is the most popular Graph DataBase
+Management System (1) (Graph DBMS), and it’s been the case since 2012.
+Neo4J ranks 22 on the list of all DBMS (2). A recent stackoverflow
+survey ranks Neo4J 17th in the list of the most popular DBMS (3) (taking
+into account all systems), but in this top, Neo4J stays first if we only
+consider Graph DBMS.
 
-Neo4J is a graph database. In classical relational databases,
-relationships are created at query time through join-like operations. In
-contrast, a graph database is a data platform that natively stores data
-as nodes and relationships (to embrace Neo4J terminology). Relationships
-are first class citizen, *i.e.* they natively exist.
+### About Graph DBMS
+
+Neo4J is a graph database management system. In classical relational
+databases, relationships are created at query time through join-like
+operations. In contrast, a graph database is a data platform that
+natively stores data as nodes and relationships (to embrace Neo4J
+terminology). Relationships are first class citizen, *i.e.* they
+natively exist, and cover a lot of use cases: social networds, fraud
+detection, network and IT, recommandation engines…
 
 ![](relvsgraph.jpg)
 
@@ -28,7 +42,7 @@ Developers, data scientists and more generally users can communicate
 with Neo4J using Cypher. Cypher is a query language in ASCII art that
 allows to represent simple and complex relationships very synthetically.
 
-Example of a query in Cypher:
+Here is an example of a query in Cypher:
 
     MATCH (n:Person {name: 'Colin'})-[*..3]->(p:Person)
     RETURN p.name;
@@ -40,23 +54,44 @@ friends, friends of friends, and friends of friends of friends. This is
 a simple, compact and expressive query that would be complex to write in
 SQL, for instance.
 
+Let’s take another example: package-dependencies in R. If we want to
+retrieve a list of **all** the dependencies of a package, we’ll need to
+recursively filter for level 1, then for level 2, then level 3… and so
+on and so forth until there are no possible loop forward. A process that
+is quite verbose to write when we are dealing with tabular data, but
+which is straightforward if we are using a graph model.
+
 ### Neo4J and R
 
-The only R package that allowed to connect R with Neo4J, `{RNeo4J}`, has
-not been maintained for 2 years.
+`{RNeo4J}` is a package that has been developped by Nicole White, former
+data scientist at Neo4J. It hasn’t been maintained for 2 years (August
+2016), and was removed from CRAN on the 2018-02-10. The former
+maintainer wrote down on Github that she wouldn’t continue to work on
+this package. Some commits have been made to the repo by an external
+developper, but there are (to this day) no clear will to maintain and
+modernize this package.
 
-This package has been removed from CRAN on the 2018-02-10. On its GitHub
-repository, an issue is still unanswered about this CRAN removal. The
-most recent commit has been made about 2 years ago (August 2016). At
-that time, the official version of Neo4J was the 2.3.7, with the beta
-being 3.1.0. As of today, the official Neo4J is 3.3.3. This package also
-relies on an API endpoint that is now deprecated
-<https://neo4j.com/docs/rest-docs/3.3/#rest-api-cypher>.
+### Why a reboot?
 
-ThinkR’s team members have started working with Neo4J recently, notably
-through a {knitr} engine for Neo4J. After this package first draft has
-been published on GitHub, we have been contacted and encouraged by the
-Neo4J team to help contributing to the development of the Neo4J - R API.
+We strongly think that we can make Neo4J a legitimate part of the data
+science workflow with R by rebooting “R for Neo4J”.
+
+Why a new series of packages? Because the way we see the suite of R
+packages for Neo4J would require too many breaking changes from the
+current package, something that would break a lot of processes for
+people currently working with the package.
+
+When working on this reboot, we’ll be taking a ‘R first’ approach,
+i.e. we will :
+
+  - Focus on a user-friendly approach for R users
+  - Focus on parsing Neo4J results and return a data format that will be
+    easy to manipulate in R, but at the same time we’ll keep in mind
+    that we need to stay as close as possible to Neo4J data format.
+  - Focus on making it possible to easily combine Neo4J results with
+    other R packages such as {igraph}, {ggraph}, {tidygraph},
+    {d3Networks}… Something that is not possible given the current state
+    of {RNeo4J}(5).
 
 ## The plan
 
@@ -72,16 +107,25 @@ printing of the result.
 
 We’ll also be focusing on flexibility of data manipulation:
 
-  - Minimize transformation of API results: we believe that a package
-    needs to respect as much as possible data sent by the API, but also
-    to give to the user a data format that can easily be managed.
-  - Use a “pipe-friendly” approach
-  - Let the user easily manipulate the connexion object
+  - Minimize the transformation of API results: we believe that this
+    package needs to respect as much as possible data returned by Neo4J,
+    but also to give to the user a data format that can be easily be.
+    That is to say that the “heavy lifting” of dealing with parsing the
+    API results should not be left to the end user.
+  - Using a data-format that has a very small (if any) deviation from
+    the “tidy data” principles (4): response should be in one dataframe
+    by set of observations, and relationships and nodes being data
+    elements in Neo4J, we’re planning on using a one-node-by-row and
+    one-relationship-by-row format.
+  - Use a “pipe-friendly” approach.
+  - With {R6}, we’ll let the user easily manipulate the connexion
+    object.
 
-As mentionned in the introduction, we will also update the API endpoints
-used in the package to be consistent with the new version of Neo4J.
+We will also update the API endpoints used in the package to be
+consistent with the new version of Neo4J.
 
-A first draft of the package can be found on []() // TODO
+A first draft of the package can be found on
+<https://github.com/neo4j-rstats/neo4r>.
 
 ### Extending R for Neo4J
 
@@ -129,7 +173,7 @@ in R :
 ``` r
 MATCH %>% 
   node(n = Person, properties = list(name = "Colin")) %>%
-  RELATES(type = "KNOWS", direction = "to") %>%
+  relates(type = "KNOWS", direction = "to") %>%
   node(p = Person) %>% 
   RETURN(p$name)
 ```
@@ -157,15 +201,16 @@ along the way.
 
 ### Support from the Neo4J team
 
-So far, our first draft at {rmd4j} has already been supported by the
-Neo4J team, as they featured it on the blog and in the developers
-newsletter
-<https://neo4j.com/blog/this-week-neo4j-rmarkdown-new-apoc-release-finding-duplicates/>.
+So far, our first efforts has already been supported by the Neo4J team,
+as they featured it on the blog and in the developers newsletter twice
+(6) and (7). They also have offered us to write an invited post on their
+blog to communicate about this project.
 
 ### Beta testers
 
-We gathered a list of ? beta testers, that will help us test along our
-developments.
+We gathered a list of 8 beta testers, that will help us test along our
+developments. A list can be found on the GitHub repo of this proposal
+(8).
 
 ## Milestone
 
@@ -259,9 +304,13 @@ Below is a summary of our needs:
 
 ## Dissemination
 
+A “neo4j-rstats” GitHub organisation has been opened to gather the
+elements of the project.
+
 All packages mentioned will be made open source, with the code published
-on GitHub continuously as we work on the development. When we will have
-reached a stable version, an official release will be made on CRAN.
+on this GitHub organisation continuously as we work on the development.
+When we will have reached a stable version, an official release will be
+made on CRAN.
 
 Neo4J Community Edition and R are both GPL3, so all packages presented
 here will be licenced as such.
@@ -269,8 +318,24 @@ here will be licenced as such.
 We will publicise our work through several channels:
 
   - Blogposts on R related blogs (on ThinkR and others)
-  - Blogposts on the Neo4J blog // TO CONFIRM
+  - Blogposts on the Neo4J blog
   - Conference talks & meetup
   - “Using Neo4J from R” book
   - Article proposals on various journals
   - Online Webinars / videos
+
+## Footnotes
+
+1)  DB-Engines Ranking of Graph DBMS :
+    <https://db-engines.com/en/ranking/graph+dbms>
+2)  DB-Engines Ranking of DBMS : <https://db-engines.com/en/ranking>
+3)  SO Developer Survey Results 2018 :
+    <https://insights.stackoverflow.com/survey/2018/#technology-databases>
+4)  Hadley Wickham. “Tidy data”. The Journal of Statistical Software,
+    vol. 59, 2014. <http://vita.had.co.nz/papers/tidy-data.html>
+5)  Currently, {RNeo4J} doesn’t allow to return a graph object (i.e. two
+    tables, one with the nodes and one with the
+    relationships).
+6)  <https://neo4j.com/blog/this-week-neo4j-rmarkdown-new-apoc-release-finding-duplicates/>
+7)  <https://neo4j.com/blog/this-week-neo4j-property-based-access-control-intro-cypher-user-path-analysis/#podcast>
+8)  <https://github.com/ThinkR-open/isc-proposal/issues/2>
