@@ -211,7 +211,7 @@ We also plan to write a manual using `{bookdown}` entitled "Using Neo4J from R".
 
 R and Neo4J are both open-source technologies for companies and academic applications. All the packages we mentioned will be release as open source tools, and we hope they will be adopted by a large audience of academics and professionnals. 
 
-We are asking for a grant to support the working time spent to develop these tools, and to promote them. We plan on spending around 10 days a month on these tools. We are asking for the support of half of these days from the RConsortium (_i.e._ 5.000$ a month). The other half will be covered by ThinkR, in its effort to support Open Source Software. ThinkR will free 5 days a month of working time for us to work on these projects.  
+We are asking for a grant to support the working time spent to develop these tools, and to promote them. We plan on spending around 10 days a month on these tools. We are asking for the support of half of these days from the RConsortium (_i.e._ 3.000$ a month). The other half will be covered by ThinkR, in its effort to support Open Source Software. ThinkR will free 5 days a month of working time for us to work on these projects.  
 
 Below is a summary of our needs: 
 
@@ -219,16 +219,16 @@ Below is a summary of our needs:
 
 |  What|  How long|  How much|
 |--:|--:|--:|
-|  `{neo4r}`|  2 months|  10.000|
-|  `{rmd4j}`  |  1 month|  5.000|
-|  `{cyphersugar}`  |  1 month |  5000|
+|  `{neo4r}`|  2 months|  6.000|
+|  `{rmd4j}`  |  1 month|  3.000|
+|  `{cyphersugar}`  |  1 month |  3000|
 
 + For Dissemination 
 
 |  What               |  How long         |  How much|
 |--------------------:|------------------:|---------:|
-|"Using Neo4J from R" |  0.5 months       |  2.500   |
-|Meetups / Conference |  2 to 3 eventscol   |  2.500   |
+|"Using Neo4J from R" |  0.5 months       |  1.500   |
+|Meetups / Conference |  2 to 3 eventscol   |  1.500   |
 
 ## Dissemination 
 
