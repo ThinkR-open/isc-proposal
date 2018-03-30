@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 Rebooting and Extending R for Neo4J
 ================
 Colin FAY
@@ -48,7 +43,7 @@ top, Neo4J stays first if we only consider Graph DBMS.
 
 ### About Graph DBMS
 
-As we just said, Neo4J is a Graph DBMS. In classical relational
+As previously mentioned, Neo4J is a Graph DBMS. In classical relational
 databases, relationships are created at query time through join-like
 operations. In contrast, a graph database is a data platform that
 natively stores data as nodes and relationships (to embrace Neo4J
@@ -60,8 +55,9 @@ natively exist.
 > Difference between relationnal and graph databases (*source: Neo4J*)
 
 Communication with Neo4J is done using Cypher. Cypher is a query
-language in ASCII art that allows to represent simple and complex
-relationships very synthetically. Here is an example of a Cypher query:
+language in ASCII art that facilitates representation of simple and
+complex relationships very synthetically. Here is an example of a Cypher
+query:
 
     MATCH (n:Person {name: 'Colin'})-[r:*..3]->(p:Person)
     RETURN p, r;
@@ -76,26 +72,26 @@ write in SQL, for instance.
 Let’s take another example: package-dependencies in R. If we want to
 retrieve a list of **all** the dependencies of a package, we’ll need to
 recursively filter for level 1, then for level 2, then level 3… and so
-on and so forth until there are no possible loop forward. A process that
-is quite verbose to write when we are dealing with tabular data, but
-which is straightforward if we are using a graph model.
+on and so forth until there are no possible loops forward. A process
+that is quite verbose to write when we are dealing with tabular data,
+but which is straightforward if we are using a graph model.
 
 ### Neo4J and R
 
-`{RNeo4J}` is a package that has been developped by Nicole White, former
-data scientist at Neo4J. It hasn’t been maintained for 2 years (August
-2016), and was removed from CRAN on the 2018-02-10. The former
-maintainer wrote down on Github that she wouldn’t continue to work on
-this package (6). Some commits have been made to the repo by an external
-contributor, but there are (to this day) no expressed will to modernise
-and maintain this package on the long run.
+`{RNeo4J}` is a package that has been developped by Nicole White, a
+former data scientist at Neo4J. It hasn’t been maintained for 2 years
+(August 2016), and was removed from CRAN on the 2018-02-10. The former
+maintainer stated on Github that she wouldn’t continue to work on this
+package (6). Some commits have been made to the repo by an external
+contributor, but there is (to this day) no indication of a adesire to
+modernise and maintain this package in the long run.
 
 ### Why a reboot?
 
 We strongly think that we can make Neo4J a legitimate part of the data
 science workflow with R by rebooting “R for Neo4J”.
 
-Why a new series of packages? Because the way we see the suite of R
+Why a new series of packages? Because the way we see it the suite of R
 packages for Neo4J would require too many breaking changes from the
 current package, something that would break a lot of processes for
 people currently working with the package.
@@ -143,11 +139,11 @@ pleasant printing of the result.
 We’ll also be focusing on flexibility of data manipulation:
 
   - Minimize the transformation of API results: we believe that this
-    package needs to respect as much as possible data structure returned
-    by Neo4J, but also to give to the user a data format that can be
-    easily manipulated. That is to say that the “heavy lifting” of
-    dealing with parsing the API results should not be left to the end
-    user.
+    package needs to respect the data structure returned by Neo4J, as
+    much as possible, but also to give to the user a data format that
+    can be easily manipulated. That is to say that the “heavy lifting”
+    of dealing with parsing the API results should not be left to the
+    end user.
   - Using a data-format that has a very small (if any) deviation from
     the “tidy data” principles (7). Since data elements in Neo4J are
     dual (nodes and relationships), we’re planning to use a
@@ -192,8 +188,8 @@ syntaxic sugar to write R-friendly functions that will be turned into
 cypher queries. This package will be inspired by what `{dbplyr}` does
 with SQL.
 
-For example, we would like to implement a package that will allow to
-write this cypher-query:
+For example, we would like to implement a package that will allow users
+to write this cypher-query:
 
     MATCH (n:Person {name: 'Colin'})-[:KNOWS]->(p:Person)
     RETURN p.name;
@@ -232,12 +228,12 @@ completed with a contribution guide.
 
 Every contribution will be welcome, be it from a beginner or a confirmed
 developer. We hope that the community will grasp this opportunity to
-work with us, and that people not knowing Neo4J will learn about this
-Graph DBMS and about the Cypher query language.
+work with us, and that people not familiar with Neo4J will learn about
+this Graph DBMS and about the Cypher query language.
 
 ### Support from the Neo4J team
 
-So far, our first efforts has been supported by the Neo4J team, as they
+So far, our first efforts have been supported by the Neo4J team, as they
 featured us on the blog and in the developers newsletter twice (9) and
 (10).
 
@@ -245,15 +241,15 @@ The Neo4J team has offered to support us for dissemination of the
 project, with support from their various communication channels: blog
 posts, social media, newsletter…
 
-Neo4J has confirmed us that they will help us along the way for any
+Neo4J has confirmed to us that they will help us along the way with any
 technical question/issue. We will also be granted an account to
 neo4j.com/cloud.
 
 ### Beta testers
 
-We gathered a list of 8 beta testers, that will help us test along our
-developments. A list can be found on the GitHub repo of this proposal
-(11).
+We gathered a list of 8 beta testers, that will help us testing
+throughout our developments. A list can be found on the GitHub repo of
+this proposal (11).
 
 ## Milestone
 
@@ -262,10 +258,10 @@ developments. A list can be found on the GitHub repo of this proposal
 The `{neo4r}` package will be the backbone of this project. This
 requires three main actions:
 
-  - Getting a stable package, released on GitHub, and get it tested by
-    the users. End the implementation of all the features.
+  - Getting a stable package, release on GitHub, and get it tested by
+    the users. Finish the implementation of all the features.
   - Build a reliable testing engine for R with Neo4J
-  - Write a complete documentation (package doc + Vignettes)
+  - Write complete documentation (package doc + Vignettes)
   - Getting the package released on CRAN
 
 > Estimated time: 2 months between the stable version on GitHub and the
@@ -276,9 +272,9 @@ requires three main actions:
 `{rmd4j}` package will rely on `{neo4r}`. Its development process will
 be quicker.
 
-  - Getting a functionnal package, released on GitHub, and get it tested
+  - Getting a functionnal package, release on GitHub, and get it tested
     by the users
-  - Write a complete documentation (package doc + Vignettes)
+  - Write complete documentation (package doc + Vignettes)
   - Getting the package released on CRAN
 
 > Estimated time: 1 month between the stable version on GitHub and the
@@ -289,9 +285,9 @@ be quicker.
 `{cyphersugar}` will be implemented after these two first packages. It
 entails:
 
-  - Getting functionnal packages, released on GitHub, and get it tested
-    by the users
-  - Write a complete documentation (package doc + Vignettes)
+  - Getting functional packages, release on GitHub, and get it tested by
+    the users
+  - Write complete documentation (package doc + Vignettes)
   - Getting the package released on CRAN
 
 > Estimated time: 1 month between the stable version on GitHub and the
@@ -303,23 +299,23 @@ This package can be considered as less central to the R-Neo4J driver. It
 will be developed in parallel with the packages previously described.
 
 As it is less fundamental to the R-Neo4J reboot and extension, it won’t
-be included in the grant programm. However, we estimate its release to
-be concomitant with the release of `{cyphersugar}`.
+be included in the grant program. However, we estimate its release to be
+concomitant with the release of `{cyphersugar}`.
 
 ### Communicating on the R-Neo4J reboot
 
-A big part of a project success is communication. We plan to participate
-in conferences and meetups to present the result of this reboot, and
-give workshop on the use of these packages.
+A big part of a projects success is communication. We plan to
+participate in conferences and meetups to present the result of this
+reboot, and give workshops on the use of these packages.
 
 We also plan to write a manual using `{bookdown}` entitled “Using Neo4J
-from R”. It will guide through the whole process of using the packages
-we’ve developed. This will be freely available.
+from R”. It will guide users through the whole process of using the
+packages we’ve developed. This will be freely available.
 
 ## How Can The ISC Help
 
 R and Neo4J are both open-source technologies for companies and academic
-applications. All the packages we mentioned will be release as open
+applications. All the packages we mentioned will be released as open
 source tools, and we hope they will be adopted by a large audience of
 academics and professionnals.
 
@@ -328,8 +324,8 @@ these tools, and to promote them. We plan on spending around 10 days a
 month on these tools. We are asking for the support of half of these
 days from the RConsortium (*i.e.* 3.000$ a month). The other half will
 be covered by ThinkR, in its effort to support Open Source Software.
-ThinkR will free 5 days a month of working time for us to work on these
-projects.
+ThinkR will give 5 free days a month of working time for us to work on
+these projects.
 
 Below is a summary of our needs:
 
