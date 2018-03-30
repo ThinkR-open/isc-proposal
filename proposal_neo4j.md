@@ -1,7 +1,12 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Rebooting and Extending R for Neo4J
 ================
 Colin FAY
-2018-03-13
+2018-03-30
 
 ## The Challenge
 
@@ -120,9 +125,8 @@ reasons:
     size, than to start by digging into a big package.
   - It will make it easier to build tools relying on these packages
     (*i.e.*, using these packages as dependencies).
-  - It’s simpler for contributors to to dig into smaller packages than
-    to understand the logic of a big package developped for various
-    tasks.
+  - It’s simpler for contributors to dig into smaller packages than to
+    understand the logic of a big package developped for various tasks.
 
 ## The plan
 
@@ -322,7 +326,7 @@ academics and professionnals.
 We are asking for a grant to support the working time spent to develop
 these tools, and to promote them. We plan on spending around 10 days a
 month on these tools. We are asking for the support of half of these
-days from the RConsortium (*i.e.* 5.000$ a month). The other half will
+days from the RConsortium (*i.e.* 3.000$ a month). The other half will
 be covered by ThinkR, in its effort to support Open Source Software.
 ThinkR will free 5 days a month of working time for us to work on these
 projects.
@@ -333,16 +337,16 @@ Below is a summary of our needs:
 
 |            What | How long | How much |
 | --------------: | -------: | -------: |
-|       `{neo4r}` | 2 months |   10.000 |
-|       `{rmd4j}` |  1 month |    5.000 |
-| `{cyphersugar}` |  1 month |     5000 |
+|       `{neo4r}` | 2 months |    6.000 |
+|       `{rmd4j}` |  1 month |    3.000 |
+| `{cyphersugar}` |  1 month |     3000 |
 
   - For Dissemination
 
 |                 What |         How long | How much |
 | -------------------: | ---------------: | -------: |
-| “Using Neo4J from R” |       0.5 months |    2.500 |
-| Meetups / Conference | 2 to 3 eventscol |    2.500 |
+| “Using Neo4J from R” |       0.5 months |    1.500 |
+| Meetups / Conference | 2 to 3 eventscol |    1.500 |
 
 ## Dissemination
 
@@ -372,8 +376,8 @@ We will publicise our work through several channels:
 1)  Neo4j Life Sciences & Healthcare Workshop – Proceedings from Berlin
     :
     <https://neo4j.com/blog/neo4j-life-sciences-healthcare-workshop-berlin/>
-2)  SEAT: A Taxonomy to Characterize Automation in Software Engineering
-    : <https://arxiv.org/abs/1803.09536>
+2)  SEAT A Taxonomy to Characterize Automation in Software Engineering :
+    <https://arxiv.org/abs/1803.09536>
 3)  DB-Engines Ranking of Graph DBMS :
     <https://db-engines.com/en/ranking/graph+dbms>
 4)  DB-Engines Ranking of DBMS : <https://db-engines.com/en/ranking>

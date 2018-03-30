@@ -1,7 +1,7 @@
 ---
 title: "Rebooting and Extending R for Neo4J"
 author: "Colin FAY"
-date: "2018-03-13"
+date: "2018-03-30"
 output: github_document
 # output:
 #   bookdown::html_document2:
@@ -250,7 +250,7 @@ We will publicise our work through several channels:
 ## Footnotes 
 
 (1) Neo4j Life Sciences & Healthcare Workshop – Proceedings from Berlin :  https://neo4j.com/blog/neo4j-life-sciences-healthcare-workshop-berlin/
-(2) SEAT: A Taxonomy to Characterize Automation in Software Engineering : https://arxiv.org/abs/1803.09536
+(2) SEAT A Taxonomy to Characterize Automation in Software Engineering : https://arxiv.org/abs/1803.09536
 (3) DB-Engines Ranking of Graph DBMS : https://db-engines.com/en/ranking/graph+dbms
 (4) DB-Engines Ranking of DBMS : https://db-engines.com/en/ranking
 (5) SO Developer Survey Results 2018 : https://insights.stackoverflow.com/survey/2018/#technology-databases
