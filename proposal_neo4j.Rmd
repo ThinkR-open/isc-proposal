@@ -74,7 +74,7 @@ This project will embrace the unix philosophy of modularity for several reasons:
 + This approach makes the maintainance easier.
 + It's easier for the end user to learn how to use a package of medium size, than to start by digging into a big package.
 + It will make it easier to build tools relying on these packages (*i.e.*, using these packages as dependencies).
-+ It's simpler for contributors to to dig into smaller packages than to understand the logic of a big package developped for various tasks. 
++ It's simpler for contributors to dig into smaller packages than to understand the logic of a big package developped for various tasks. 
 
 ## The plan
 
